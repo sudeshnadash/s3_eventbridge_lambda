@@ -1,8 +1,8 @@
 data "archive_file" "lambda_zip" {
   type = "zip"
 
-  source_dir  = "../../../lambda"
-  output_path = "../../../s3_eventbridge_trigger.zip"
+  source_dir  = "${path.module}/../../lambda"
+  output_path = "${path.module}/../../s3_eventbridge_trigger.zip"
 }
 resource "aws_lambda_function" "s3_eventbridge_lambda" {
   function_name = "s3_eventbridge_lambda" 
