@@ -1,9 +1,18 @@
 resource "aws_cloudwatch_event_rule" "s3_event_rule" {
-  name        = "s3_event_rule"
-  description = "Trigger Lambda from S3 events"
+  name          = "s3_event_rule"
+  description   = "Trigger Lambda from S3 events"
   event_pattern = <<EOF
 {
   "detail": {
+    "object": {
+      "key":[
+      {
+        "prefix": "test"
+      }
+      {
+        "suffix": ".pdf"
+      }]
+    },
     "bucket": {
       "name": ["${aws_s3_bucket.s3_trigger_eventbridge.id}"]
     }
